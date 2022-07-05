@@ -1,0 +1,125 @@
+@import "variables";
+
+html {
+  direction: ltr;
+  min-height: 100vh;
+  max-height: 100vh;
+  background-color: #191A22;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+}
+
+* {
+  outline: none;
+  color: $primary-text-color;
+}
+
+::-moz-selection {
+  color: #333;
+  background: $primary-color;
+}
+
+::selection {
+  color: #333;
+  background: $primary-color;
+}
+
+body {
+  background-color: #191A22;
+}
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.2s;
+
+  &:link,
+  &:visited {
+    color: inherit;
+  }
+
+  &:hover,
+  &:active {
+    color: $primary-color;
+  }
+}
+
+p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+i.abn-icon {
+  line-height: 0;
+  color: $primary-color;
+}
+
+span, div {
+  cursor: default;
+}
+
+table {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 20px;
+  border-collapse: collapse;
+
+  thead {
+    font-weight: 900;
+
+    th {
+      color: $secondary-text-color;
+    }
+  }
+
+  tbody {
+    tr {
+      transition: color, background-color 0.4s;
+
+      &:hover {
+        background-color: #22242E;
+        transition: color, background-color 0.2s;
+      }
+    }
+  }
+
+  tr {
+    font-weight: 100;
+
+    th, td {
+      border: none;
+      height: 60px;
+      text-align: left;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  }
+}
+
+@media (max-width: $mobile-size-breakpoint) {
+  table {
+    overflow-x: scroll;
+    border-radius: 10px;
+
+    tbody {
+      tr {
+        transition: color, background-color 0.4s;
+
+        &:hover {
+          background-color: #22242E;
+          transition: color, background-color 0.2s;
+        }
+      }
+    }
+
+    tr {
+      font-weight: 100;
+
+      th, td {
+        font-size: 12px;
+        border: none;
+        padding-left: 5px;
+        padding-right: 5px;
+      }
+    }
+  }
+}

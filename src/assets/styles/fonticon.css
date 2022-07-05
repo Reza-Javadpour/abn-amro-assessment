@@ -1,0 +1,41 @@
+@font-face {
+  font-family: 'abn-tv-icons';
+  src: url('../fonts/font-icon/abn-tv-icons.eot?96357582');
+  src: url('../fonts/font-icon/abn-tv-icons.eot?96357582#iefix') format('embedded-opentype'),
+       url('../fonts/font-icon/abn-tv-icons.woff2?96357582') format('woff2'),
+       url('../fonts/font-icon/abn-tv-icons.woff?96357582') format('woff'),
+       url('../fonts/font-icon/abn-tv-icons.ttf?96357582') format('truetype'),
+       url('../fonts/font-icon/abn-tv-icons.svg?96357582#abn-tv-icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+[class^="abn-icon icon-"]:before, [class*=" abn-icon icon-"]:before {
+  font-family: "abn-tv-icons", serif;
+  font-style: normal;
+  font-weight: normal;
+  speak: never;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  text-align: center;
+  font-variant: normal;
+  text-transform: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-right-sign:before { content: '\e800'; }
+.icon-info-circled:before { content: '\e801'; }
+.icon-left-sign:before { content: '\e802'; }
+.icon-video:before { content: '\e804'; }
+.icon-tags:before { content: '\e806'; }
+.icon-briefcase:before { content: '\e807'; }
+.icon-phone:before { content: '\e808'; }
+.icon-home:before { content: '\e809'; }
+.icon-search:before { content: '\e80b'; }
+.icon-arrow-left:before { content: '\e80e'; }
+.icon-clear:before { content: '\e80f'; }
+.icon-thumb:before { content: '\f00a'; }
+.icon-television:before { content: '\f26c'; }
+.icon-torso:before { content: '\e803'; }
+.icon-user:before { content: '\e805'; }
