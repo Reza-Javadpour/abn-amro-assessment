@@ -74,12 +74,13 @@
 </template>
 
 <script>
+import { GET_TV_SHOW } from '../store/modules/tvShows/action-type';
 import ErrorPlaceHolder from '../components/ErrorPlaceHolder.vue';
 import SectionWrapper from '../components/SectionWrapper.vue';
 import LoadingContent from '../components/LoadingContent.vue';
 import ArrayCell from '../components/ArrayCell.vue';
 import CastList from '../components/CastList.vue';
-import api from '../core/api';
+import { store } from '../store';
 
 export default {
   name: 'TvShow',
@@ -87,13 +88,18 @@ export default {
 
   data() {
     return {
-      tvShow: null,
       isLoading: false,
       tvShowId: this.$route.params.tvShowId
     }
   },
-  created() {
-    this.getShow();
+  mounted() {
+    if (this.tvShow) {
+      if (this.tvShow.id !== +this.$route.params.tvShowId) {
+        this.getShow();
+      }
+    } else {
+      this.getShow();
+    }
   },
   computed: {
     pageTitle() {
@@ -105,15 +111,15 @@ export default {
     },
     schedule() {
       return (this.tvShow.schedule?.days?.toString() || 'Everyday') + ' - ' + (this.tvShow.schedule?.time || 'N/A')
+    },
+    tvShow() {
+      return store.state.tvShows.tvShowDetail
     }
   },
   methods: {
     async getShow() {
       this.isLoading = true;
-      await api.getTvShowDetails(this.tvShowId).then((response) => {
-        this.tvShow = response.data;
-        this.isLoading = false;
-      }, () => {
+      store.dispatch(GET_TV_SHOW, this.tvShowId).finally(() => {
         this.isLoading = false;
       });
     },

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const HTTP = axios.create({
+export const HTTP = axios.create({
   baseURL: 'https://api.tvmaze.com/',
   timeout: 10000
 })
@@ -12,8 +12,8 @@ export default {
     }
     return HTTP.get(`show?page=${page}`)
   },
-  getQueryTvShows(page = '') {
-    return HTTP.get(`search/shows?q=${page}`)
+  getQueryTvShows(query = '') {
+    return HTTP.get(`search/shows?q=${query}`)
   },
   getTvShowDetails(tvShowId) {
     if(tvShowId) {

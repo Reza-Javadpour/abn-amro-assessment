@@ -12,24 +12,30 @@
 
 <script>
 
-import { findTvShowsInQuery } from '../core/utils';
+import { GET_TV_SHOWS, GET_TV_SHOWS_IN_QUERY } from '../store/modules/tvShows/action-type';
 import SectionWrapper from '../components/SectionWrapper.vue';
 import CustomTable from '../components/CustomTable.vue';
-import api from '../core/api';
+import { store } from '../store';
 
 export default {
   name: 'tv-shows',
   components: {CustomTable, SectionWrapper},
   data() {
     return {
-      movies: null,
       isLoading: false,
     };
   },
   mounted() {
-    this.getTvShows();
+    if (!this.movies || !this.movies.length || this.$route.query.search) {
+      this.getTvShows();
+    }
   },
-  watch:{
+  computed: {
+    movies() {
+      return store.state.tvShows.tvShows
+    }
+  },
+  watch: {
     $route(to, from) {
       if(to.name === 'TvShows' && to.query.genre === from.query.genre) {
         this.getTvShows();
@@ -37,21 +43,15 @@ export default {
     }
   },
   methods: {
-    async getTvShows() {
+    getTvShows() {
       this.isLoading = true;
       this.movies = null;
       if(this.$route.query.search) {
-        api.getQueryTvShows(this.$route.query.search).then((response) => {
-          this.movies = findTvShowsInQuery(response.data);
-          this.isLoading = false;
-        }, () => {
+        store.dispatch(GET_TV_SHOWS_IN_QUERY, this.$route.query.search).finally(() => {
           this.isLoading = false;
         });
       } else {
-        api.getTvShows(this.$route.query.page - 1).then((response) => {
-          this.movies = response.data;
-          this.isLoading = false;
-        }, () => {
+        store.dispatch(GET_TV_SHOWS, this.$route.query.page - 1).finally(() => {
           this.isLoading = false;
         });
       }
